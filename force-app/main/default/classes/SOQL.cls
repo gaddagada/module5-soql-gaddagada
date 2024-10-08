@@ -185,7 +185,7 @@ public with sharing class SOQL {
         List<AggregateResult> oppValue = [SELECT SUM(Amount) revenue FROM Opportunity WHERE Amount > 10000 OR StageName = :stage];
 
         Decimal oppRevenue = (Decimal)oppValue[0].get('revenue');
-        
+
          // Return the total revenue
          return oppRevenue; // Replace null with the variable you used to store the result
     }
@@ -262,9 +262,14 @@ public with sharing class SOQL {
         Map<Id, String> accountIdsToNames = new Map<Id, String>();
 
         // Query the Accounts
+        List<Account> accountList = [SELECT Id, Name, BillingCountry FROM Account WHERE BillingCountry != :country];
+        
         // Loop through each Account and add the Id and Name to the map
-
-        return null; // Replace null with the variable you used to store the result
+        for (Account account : accountList) {
+            accountIdsToNames.put(account.Id, account.Name);
+        }
+         // Replace null with the variable you used to store the result
+        return accountIdsToNames; 
     }
 
     /**
