@@ -193,7 +193,9 @@ public with sharing class SOQL {
      * @return A list of the first 10 Accounts ordered by Name.
      */
     public static List<Account> getFirstTenAccounts() {
-        return null; // Replace null with the variable you used to store the result
+        // Use SOQL query to retrieve the first 10 Accounts ordered by Name
+        List<Account> firstTenAccounts = [SELECT Id, Name FROM Account ORDER BY NAME LIMIT 10]; 
+        return firstTenAccounts; // Replace null with the variable you used to store the result
     }
     
     /**
