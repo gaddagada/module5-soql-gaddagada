@@ -376,7 +376,8 @@ public with sharing class SOQL {
      * @return A list of filtered Opportunity
      */
     public static List<Opportunity> getOpportunityDetailsForClosedWon() {        
-        return null; // Replace null with the variable you used to store the result
+        List<Opportunity> closedWonOpp =[SELECT Name, Account.Name, OwnerId FROM Opportunity WHERE StageName = 'Closed Won'];
+        return closedWonOpp; // Replace null with the variable you used to store the result
     }
 
     /**
