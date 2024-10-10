@@ -240,14 +240,15 @@ public with sharing class SOQL {
      */
     public static Set<Id> getCaseIdsByAccount(Id accountId) {
         // Create a set to hold the Case Ids
-
+        Set <Id> caseIdsForAccount = New Set <Id>();
         // Query the Cases
+        Case[] caseForAccount = [SELECT Id, Casenumber FROM Case WHERE AccountId = :accountId];
         // Loop through each Case and add the Id to the set
-        //for () {
-        //    
-        //}
+        for (Case cas  : caseForAccount) {
+            caseIdsForAccount.add(cas.Id);
 
-        return null; // Replace null with the variable you used to store the result
+        }
+        return caseIdsForAccount; 
     }
 
     /**
